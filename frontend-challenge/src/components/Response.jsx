@@ -21,19 +21,20 @@ export default function Response(props) {
       },
       body: JSON.stringify(data),
      }).then(response => response.json())
-     .then(data => setResponses([...responses, data.choices[0].text]))  
+     .then(data => 
+      setResponses([...responses, data.choices[0].text]),
+     )
+
+     localStorage.setItem('responses', [...responses])
   }, [props.input])
    
     return(
         <div className="Response">
-        Responses go here!
-        <div>
         <div>
         {responses.slice(1).reverse().map((a, i) => (
           <p key={i}>{a}</p>
         ))}
       </div>
-        </div>
       </div>
     )
 }
